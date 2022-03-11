@@ -7,9 +7,22 @@
 task.type = "standard";
 task.state = "-5";
 
-task.short_description = task.short_description + " - " + current.variables.what_would.getDisplayValue();
+task.short_description += " - " + current.variables.request.getDisplayValue();
 
-task.description = "Requested for:  " + current.variables.u_requested_for.name + "\n\n"
-+ "Details:\n" + current.variables.details.getDisplayValue() + "\n\n"
-+ "Source:\n" + current.variables.source.getDisplayValue() + "\n\n"
-+ "Filename:\n" + current.variables.filename.getDisplayValue();
+task.description = "Requested for:  " + current.variables.u_requested_for.name + "\n\n";
+
+if (current.variables.request == "add") {
+  task.description += "Add routing type: " + current.variables.location.getDisplayValue() + "\n\n";
+  
+  if (current.variables.location == "external") {
+    task.description += "Username: " + current.variables.username + "\n\n";    
+  }
+}
+
+task.description += "Filename: " + current.variables.filename + "\n\n"
++ "Source: " + current.variables.source + "\n\n"
++ "Destination: " + current.variables.destination + "\n\n"
++ "Date to be completed: " + current.variables.date.getDisplayValue() + "\n\n"
++ "Priority: " + current.variables.priority.getDisplayValue() + "\n\n"
++ "Details: " + current.variables.details + "\n\n"
++ "Additional Information: " + current.variables.info;

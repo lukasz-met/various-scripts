@@ -12,8 +12,8 @@ task.short_description += " - " + current.variables.request.getDisplayValue();
 task.description = "Requested for:  " + current.variables.u_requested_for.name + "\n\n";
 
 if (current.variables.request == "add") {
-  task.description += "Add routing type: " + current.variables.location.getDisplayValue() + "\n\n";
-  
+  task.short_description += " - " + current.variables.location;
+
   if (current.variables.location == "external") {
     task.description += "Username: " + current.variables.username + "\n\n";    
   }

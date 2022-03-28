@@ -1,3 +1,11 @@
+var accname = current.variables.consumer_account;
+var acc = new GlideRecord('customer_account');
+acc.addQuery('name', accname);
+acc.query();
+if (acc.next()) {
+var newname = acc.sys_id;
+}
+
 var gr = current.variables.consumer_email;
 var grid = new GlideRecord('sys_user');
   grid.addQuery('email', gr);
@@ -18,6 +26,7 @@ if(record_id){
         }
 
         consumer_user.setValue('sys_class_name','customer_contact');
+		consumer_user.setValue('company', newname);
         consumer_user.autoSysFields(false);
         consumer_user.update('Manual User Reclassification');
 
@@ -25,13 +34,3 @@ if(record_id){
     }}
 
 }
-var name = current.variables.consumer_account;
-var cont = current.variables.consumer_email;
-var acc = new GlideRecord('customer_contact');
-  acc.addQuery('email', cont);
-   acc.query();
-    if (acc.next()) {
-	acc.account = name.sys_id;
-	acc.update();
-	}
-		
